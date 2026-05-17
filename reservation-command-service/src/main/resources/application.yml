@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: reservation-command
+  datasource:
+    url: jdbc:postgresql://localhost:5432/reservation_command
+    username: hotel
+    password: hotelpass
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  flyway:
+    enabled: false
+
+kafka:
+  bootstrap-servers: kafka:9092
+  topic:
+    reservation-events: hotel.reservation.events
+
+server:
+  port: 8081
+
+
+

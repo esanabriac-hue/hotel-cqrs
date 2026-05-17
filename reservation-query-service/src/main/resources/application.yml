@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: reservation-query
+  data:
+    mongodb:
+      host: mongo
+      port: 27017
+      database: reservation_query
+
+kafka:
+  bootstrap-servers: kafka:9092
+  topic:
+    reservation-events: hotel.reservation.events
+
+server:
+  port: 8082
