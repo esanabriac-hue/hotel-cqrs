@@ -1,0 +1,34 @@
+<main>
+  <h1>Hotel CQRS</h1>
+
+  <section class="card">
+    <h2>Enviar comando</h2>
+    <form (ngSubmit)="createBooking()">
+      <label>
+        Huésped
+        <input name="guestName" [(ngModel)]="guestName" required />
+      </label>
+
+      <label>
+        Habitación
+        <input name="roomNumber" [(ngModel)]="roomNumber" required />
+      </label>
+
+      <button type="submit">Crear reserva</button>
+    </form>
+  </section>
+
+  <section class="card">
+    <h2>Consultar reservas</h2>
+    <button (click)="loadBookings()">Actualizar modelo de lectura</button>
+
+    <ul>
+      <li *ngFor="let booking of bookings">
+        <strong>{{ booking.bookingId }}</strong>
+        <span>{{ booking.guestName }} - Habitación {{ booking.roomNumber }} - {{ booking.status }}</span>
+      </li>
+    </ul>
+  </section>
+
+  <p class="message" *ngIf="message">{{ message }}</p>
+</main>
