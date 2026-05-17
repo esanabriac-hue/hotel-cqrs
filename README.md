@@ -14,6 +14,8 @@ Implementación mínima de CQRS para reservas de hotel con:
 3. El servicio de consulta consume el evento y actualiza su proyección.
 4. La UI consulta `GET /api/bookings` o `GET /api/bookings/{id}` en el servicio de consulta.
 
+> Nota: el modelo de lectura del `query-service` es en memoria para desarrollo, por lo que se reinicia al levantar nuevamente el servicio.
+
 ## Ejecutar con Docker Compose
 
 ```bash

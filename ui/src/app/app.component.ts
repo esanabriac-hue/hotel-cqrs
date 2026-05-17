@@ -42,7 +42,8 @@ export class AppComponent {
       this.message = `Comando aceptado. Booking ID: ${body.bookingId}`;
       this.guestName = '';
       this.roomNumber = '';
-    } catch {
+    } catch (error) {
+      console.error(error);
       this.message = 'No se pudo enviar el comando (error de red)';
     }
   }
@@ -57,7 +58,8 @@ export class AppComponent {
 
       this.bookings = await response.json();
       this.message = '';
-    } catch {
+    } catch (error) {
+      console.error(error);
       this.message = 'No se pudo consultar el modelo de lectura (error de red)';
     }
   }
