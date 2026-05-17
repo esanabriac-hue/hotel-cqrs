@@ -1,14 +1,17 @@
 spring:
   application:
     name: reservation-command
+
   datasource:
-    url: jdbc:postgresql://localhost:5432/reservation_command
+    url: jdbc:postgresql://postgres:5432/reservation_command
     username: hotel
     password: hotelpass
+
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+
   flyway:
     enabled: false
 
@@ -19,6 +22,3 @@ kafka:
 
 server:
   port: 8081
-
-
-
