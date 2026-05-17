@@ -29,8 +29,12 @@ services:
 
   mongo:
     image: mongo:6
-    ports: ['27017:27017']
-    volumes: ['mongodata:/data/db']
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodata:/data/db
+
 
   command-service:
     build: ./reservation-command-service
