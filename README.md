@@ -32,21 +32,21 @@ Servicios disponibles:
 ### Command service
 
 ```bash
-cd /home/runner/work/hotel-cqrs/hotel-cqrs/command-service
+cd command-service
 mvn spring-boot:run
 ```
 
 ### Query service
 
 ```bash
-cd /home/runner/work/hotel-cqrs/hotel-cqrs/query-service
+cd query-service
 mvn spring-boot:run
 ```
 
 ### UI Angular
 
 ```bash
-cd /home/runner/work/hotel-cqrs/hotel-cqrs/ui
+cd ui
 npm install
 npm start
 ```

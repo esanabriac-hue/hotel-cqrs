@@ -26,30 +26,39 @@ export class AppComponent {
 
   async createBooking(): Promise<void> {
     this.message = '';
-    const response = await fetch(this.commandApi, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ guestName: this.guestName, roomNumber: this.roomNumber })
-    });
+    try {
+      const response = await fetch(this.commandApi, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ guestName: this.guestName, roomNumber: this.roomNumber })
+      });
 
-    if (!response.ok) {
-      this.message = 'No se pudo enviar el comando';
-      return;
+      if (!response.ok) {
+        this.message = `No se pudo enviar el comando (HTTP ${response.status})`;
+        return;
+      }
+
+      const body = await response.json();
+      this.message = `Comando aceptado. Booking ID: ${body.bookingId}`;
+      this.guestName = '';
+      this.roomNumber = '';
+    } catch {
+      this.message = 'No se pudo enviar el comando (error de red)';
     }
-
-    const body = await response.json();
-    this.message = `Comando aceptado. Booking ID: ${body.bookingId}`;
-    this.guestName = '';
-    this.roomNumber = '';
   }
 
   async loadBookings(): Promise<void> {
-    const response = await fetch(this.queryApi);
-    if (!response.ok) {
-      this.message = 'No se pudo consultar el modelo de lectura';
-      return;
-    }
+    try {
+      const response = await fetch(this.queryApi);
+      if (!response.ok) {
+        this.message = `No se pudo consultar el modelo de lectura (HTTP ${response.status})`;
+        return;
+      }
 
-    this.bookings = await response.json();
+      this.bookings = await response.json();
+      this.message = '';
+    } catch {
+      this.message = 'No se pudo consultar el modelo de lectura (error de red)';
+    }
   }
 }
