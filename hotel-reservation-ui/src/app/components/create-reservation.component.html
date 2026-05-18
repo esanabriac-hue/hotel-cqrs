@@ -1,0 +1,59 @@
+<div class="container">
+  <header class="header">
+    <h2>Crear Reserva</h2>
+    <p class="subtitle">Hotel con 10 habitaciones (1 al 10). Máximo una reserva por habitación en fechas solapadas.</p>
+  </header>
+
+  @if (errorMessage) {
+    <div class="alert error-alert">
+      <span class="icon">⚠️</span> {{ errorMessage }}
+    </div>
+  }
+  @if (successMessage) {
+    <div class="alert success-alert">
+      <span class="icon">✅</span> {{ successMessage }}
+    </div>
+  }
+
+  <div class="form-wrapper">
+    <form (ngSubmit)="create()" class="modern-form">
+
+      <div class="form-group">
+        <label>Nombre del huésped</label>
+        <input type="text" [(ngModel)]="reservation.guestName" name="guestName" placeholder="Ej. Juan Pérez" required class="form-control" />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Fecha de entrada</label>
+          <input type="date" [(ngModel)]="reservation.checkIn" name="checkIn" (change)="onDatesChange()" required class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <label>Fecha de salida</label>
+          <input type="date" [(ngModel)]="reservation.checkOut" name="checkOut" (change)="onDatesChange()" required class="form-control" />
+        </div>
+      </div>
+
+      @if (availableRooms.length > 0) {
+        <div class="info-badge">
+          <span class="icon">ℹ️</span> Habitaciones disponibles: <strong>{{ availableRooms.join(', ') }}</strong>
+        </div>
+      }
+
+      <div class="form-group">
+        <label>Habitación</label>
+        <select [(ngModel)]="reservation.roomId" name="roomId" required class="form-control">
+          @for (room of rooms; track room) {
+            <option [value]="room">Habitación {{ room }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-submit">Crear Reserva</button>
+      </div>
+
+    </form>
+  </div>
+</div>

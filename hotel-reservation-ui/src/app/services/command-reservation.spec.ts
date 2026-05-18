@@ -1,13 +1,15 @@
 import { TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { CommandService } from './command-reservation';
 
-import { CommandReservation } from './command-reservation';
-
-describe('CommandReservation', () => {
-  let service: CommandReservation;
+describe('CommandService', () => {
+  let service: CommandService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(CommandReservation);
+    TestBed.configureTestingModule({
+      providers: [provideHttpClient()]
+    });
+    service = TestBed.inject(CommandService);
   });
 
   it('should be created', () => {

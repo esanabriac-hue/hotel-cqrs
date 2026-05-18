@@ -1,0 +1,52 @@
+<div class="container">
+  <header class="header">
+    <h2>Gestión de Reservas</h2>
+    <p>Listado actual de ocupación de habitaciones</p>
+  </header>
+
+  @if (errorMessage()) {
+    <div class="error-alert">
+      <span class="icon">⚠️</span> {{ errorMessage() }}
+    </div>
+  }
+
+  <div class="table-wrapper">
+    <table class="modern-table">
+      <thead>
+      <tr>
+        <th>Huésped</th>
+        <th>Habitación</th>
+        <th>Entrada</th>
+        <th>Salida</th>
+      </tr>
+      </thead>
+
+      <tbody>
+        @for (r of reservations(); track r.id) {
+          <tr>
+            <td>
+              <div class="guest-info">
+                <span class="avatar">{{ r.guestName.charAt(0) | uppercase }}</span>
+                <span class="name">{{ r.guestName }}</span>
+              </div>
+            </td>
+            <td>
+              <span class="room-badge">Hab. {{ r.roomId }}</span>
+            </td>
+            <td>{{ r.checkIn | date:'dd MMM, yyyy' }}</td>
+            <td>{{ r.checkOut | date:'dd MMM, yyyy' }}</td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="4" class="empty-state">
+              <div class="empty-content">
+                <span class="empty-icon">📅</span>
+                <p>No hay reservas en este momento.</p>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

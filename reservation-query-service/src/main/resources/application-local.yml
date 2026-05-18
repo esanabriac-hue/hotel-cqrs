@@ -1,0 +1,15 @@
+spring:
+  mongodb:
+    uri: mongodb://localhost:27017/reservation_query
+
+  kafka:
+    bootstrap-servers: localhost:29092
+    consumer:
+      group-id: reservation-query-group
+
+server:
+  port: 8082
+
+kafka:
+  topic:
+    reservation-events: hotel.reservation.events

@@ -1,0 +1,16 @@
+spring:
+  mongodb:
+    uri: mongodb://mongo:27017/reservation_query
+
+  kafka:
+    bootstrap-servers: kafka:9092
+    consumer:
+      group-id: reservation-query-v2
+      auto-offset-reset: earliest
+
+server:
+  port: 8082
+
+kafka:
+  topic:
+    reservation-events: hotel.reservation.events

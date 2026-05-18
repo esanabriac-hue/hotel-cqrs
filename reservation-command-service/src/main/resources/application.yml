@@ -15,8 +15,11 @@ spring:
   flyway:
     enabled: false
 
+  kafka:
+    bootstrap-servers: kafka:9092
+
+
 kafka:
-  bootstrap-servers: kafka:9092
   topic:
     reservation-events: hotel.reservation.events
 
