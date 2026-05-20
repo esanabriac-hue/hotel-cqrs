@@ -14,6 +14,7 @@ public class ReservationCreatedEvent {
     private String hotelId;
     private String roomId;
     private String guestName;
+    private String guestEmail;
     private LocalDate checkIn;
     private LocalDate checkOut;
 }

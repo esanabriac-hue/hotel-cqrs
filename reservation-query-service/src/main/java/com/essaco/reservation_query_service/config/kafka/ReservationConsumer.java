@@ -3,6 +3,7 @@ package com.essaco.reservation_query_service.config.kafka;
 import com.essaco.reservation_query_service.domain.events.ReservationCreatedEvent;
 import com.essaco.reservation_query_service.domain.model.ReservationView;
 import com.essaco.reservation_query_service.domain.repository.ReservationViewRepository;
+import com.essaco.reservation_query_service.domain.service.EmailNotificationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
 public class ReservationConsumer {
 
     private final ReservationViewRepository repository;
+    private final EmailNotificationService emailNotificationService;
 
     @KafkaListener(
             topics = "${kafka.topic.reservation-events}",
@@ -28,11 +30,14 @@ public class ReservationConsumer {
                 event.getHotelId(),
                 event.getRoomId(),
                 event.getGuestName(),
+                event.getGuestEmail(),
                 event.getCheckIn(),
                 event.getCheckOut()
         );
 
         repository.save(view);
         log.info("Vista guardada en MongoDB: reservationId={}", event.getReservationId());
+
+        emailNotificationService.sendConfirmation(event);
     }
 }
