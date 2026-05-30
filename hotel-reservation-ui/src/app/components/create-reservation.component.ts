@@ -16,6 +16,7 @@ export class CreateReservationComponent {
 
   reservation: Reservation = {
     guestName: '',
+    guestEmail: '',
     roomId: '1',
     checkIn: '',
     checkOut: ''
@@ -59,6 +60,7 @@ export class CreateReservationComponent {
         this.successMessage = 'Reserva creada correctamente';
         this.reservation = {
           guestName: '',
+          guestEmail: '',
           roomId: '1',
           checkIn: '',
           checkOut: ''

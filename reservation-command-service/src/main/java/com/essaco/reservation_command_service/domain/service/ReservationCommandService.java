@@ -30,6 +30,7 @@ public class ReservationCommandService {
                 saved.getHotelId(),
                 saved.getRoomId(),
                 saved.getGuestName(),
+                saved.getGuestEmail(),
                 saved.getCheckIn(),
                 saved.getCheckOut()
         );
